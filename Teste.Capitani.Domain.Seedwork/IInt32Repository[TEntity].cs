@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading;
 
 namespace Teste.Capitani.Domain.Seedwork
 {
-    public interface IEntity
+    public interface IInt32Repository<TEntity> : IRepository<TEntity, int>
+        where TEntity : class
     {
-        bool IsTransient();
+
     }
 }

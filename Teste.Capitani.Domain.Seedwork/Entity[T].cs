@@ -1,9 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 
 namespace Teste.Capitani.Domain.Seedwork
 {
-    public class Entity<TId>
+    public abstract class Entity<TId> : IEntity<TId>
     {
-
+        public abstract TId Id { get; set; }
+        public abstract bool IsTransient();
     }
 }

@@ -6,7 +6,7 @@ using Teste.Capitani.Domain.Seedwork;
 
 namespace Teste.Capitani.Domain.MainContext.Aggs.PessoaAgg
 {
-    public interface IPessoaRepository : IRepository<Pessoa>
+    public interface IPessoaRepository : IRepository<Pessoa, int>
     {
 
     }

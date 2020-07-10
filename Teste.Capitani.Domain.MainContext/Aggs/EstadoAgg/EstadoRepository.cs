@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
+using Teste.Capitani.Domain.Seedwork;
+
 namespace Teste.Capitani.Domain.MainContext.Aggs.EstadoAgg
 {
-    public class EstadoRepository
+    public interface EstadoRepository : IRepository<Estado, int>
     {
 
     }
