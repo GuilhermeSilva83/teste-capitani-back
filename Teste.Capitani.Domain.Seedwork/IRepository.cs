@@ -13,7 +13,7 @@ namespace Teste.Capitani.Domain.Seedwork
 
         Task<List<TEntity>> List();
 
-        Task DeleteById(TId id);
+        void DeleteById(TId id);
         Task<TEntity> GetById(TId id);
     }
 }

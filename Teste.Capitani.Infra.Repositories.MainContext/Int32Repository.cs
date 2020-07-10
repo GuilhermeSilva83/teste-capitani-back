@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Teste.Capitani.Domain.Seedwork;
@@ -9,7 +10,7 @@ using Teste.Capitani.Domain.Seedwork;
 namespace Teste.Capitani.Infra.Repositories.MainContext
 {
     public class Int32Repository<TEntity> : IInt32Repository<TEntity>
-       where TEntity : class, IEntity<int>
+       where TEntity : class, IEntity<int>, new()
     {
         private readonly MainUnitOfWork ct;
         public Int32Repository(IUnitOfWork ct)
@@ -17,10 +18,13 @@ namespace Teste.Capitani.Infra.Repositories.MainContext
             this.ct = ct as MainUnitOfWork;
         }
 
-        public async Task DeleteById(int id)
+        public void DeleteById(int id)
         {
             var set = GetSet();
-            set.Remove(await this.GetById(id));
+            //  var e = await set.AsNoTracking().FirstOrDefaultAsync(w => w.Id == id); // await this.GetById(id);
+            var e = new TEntity();
+            e.Id = id;
+            set.Remove(e);
         }
 
         public void Save(TEntity entity)

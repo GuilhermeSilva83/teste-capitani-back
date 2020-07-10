@@ -7,6 +7,6 @@ namespace Teste.Capitani.Domain.Seedwork
 {
     public interface IEntity<TId> : IEntity
     {
-        TId Id { get; }
+        TId Id { get; set; }
     }
 }
