@@ -32,9 +32,9 @@ namespace Teste.Capitani.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<TEntity> Get(int id)
         {
-            return "value";
+            return await this.rep.GetById(id);
         }
 
         [HttpPost]
