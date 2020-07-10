@@ -16,15 +16,8 @@ namespace Teste.Capitani.WebApi.Controllers
     [ApiController]
     public class EstadoController : Int32CrudController<IEstadoRepository, Estado>
     {
-        IUnitOfWork uow = null;
-        IEstadoRepository rep = null;
-
         public EstadoController(IUnitOfWork uow, IEstadoRepository rep) : base(uow, rep)
         {
-            this.uow = uow;
-            this.rep = rep;
         }
-
-
     }
 }

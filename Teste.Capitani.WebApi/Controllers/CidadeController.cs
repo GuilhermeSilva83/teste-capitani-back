@@ -23,7 +23,7 @@ namespace Teste.Capitani.WebApi.Controllers
         [HttpGet("por-estado/{estadoId:int}")]
         public async Task<IEnumerable<Cidade>> ListarPorEstado(int estadoId)
         {
-            return await this.rep.ListarPorEstado(estadoId);
+            return await this.repository.ListarPorEstado(estadoId);
         }
 
     }

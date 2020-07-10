@@ -18,10 +18,7 @@ namespace Teste.Capitani.WebApi.Controllers
     {
         public PessoaController(IUnitOfWork uow, IPessoaRepository rep) : base(uow, rep)
         {
-            this.uow = uow;
-            this.rep = rep;
+
         }
-
-
     }
 }

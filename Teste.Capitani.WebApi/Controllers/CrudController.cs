@@ -15,33 +15,33 @@ namespace Teste.Capitani.WebApi.Controllers
         where TEntity : class
 
     {
-        protected IUnitOfWork uow = null;
-        protected TRepository rep = null;
+        protected IUnitOfWork unitOfWork = null;
+        protected TRepository repository = null;
 
         public Int32CrudController(IUnitOfWork uow, TRepository rep)
         {
-            this.uow = uow;
-            this.rep = rep;
+            this.unitOfWork = uow;
+            this.repository = rep;
         }
 
 
         [HttpGet]
         public async Task<IEnumerable<TEntity>> Get()
         {
-            return await rep.List();
+            return await repository.List();
         }
 
         [HttpGet("{id}")]
         public async Task<TEntity> Get(int id)
         {
-            return await this.rep.GetById(id);
+            return await this.repository.GetById(id);
         }
 
         [HttpPost]
         public OperationResult Post([FromBody] TEntity value)
         {
-            rep.Save(value);
-            uow.Commit();
+            repository.Save(value);
+            unitOfWork.Commit();
             return OperationResult.Ok(value);
 
         }
@@ -49,8 +49,8 @@ namespace Teste.Capitani.WebApi.Controllers
         [HttpPut("{id}")]
         public OperationResult Put([FromBody] TEntity value)
         {
-            rep.Save(value);
-            uow.Commit();
+            repository.Save(value);
+            unitOfWork.Commit();
 
             return OperationResult.Ok(value);
         }
@@ -58,8 +58,8 @@ namespace Teste.Capitani.WebApi.Controllers
         [HttpDelete("{id}")]
         public OperationResult Delete(int id)
         {
-            rep.DeleteById(id);
-            uow.Commit();
+            repository.DeleteById(id);
+            unitOfWork.Commit();
             return OperationResult.Ok();
         }
     }
