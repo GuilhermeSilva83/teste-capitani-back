@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace teste_capitani_back
+namespace Teste.Capitani.WebApi
 {
     public class Program
     {

@@ -11,10 +11,10 @@ namespace Teste.Capitani.Infra.Repositories.MainContext
     public class Int32Repository<TEntity> : IInt32Repository<TEntity>
        where TEntity : class, IEntity<int>
     {
-        private readonly DbContext ct;
-        public Int32Repository(DbContext ct)
+        private readonly MainUnitOfWork ct;
+        public Int32Repository(IUnitOfWork ct)
         {
-            this.ct = ct;
+            this.ct = ct as MainUnitOfWork;
         }
 
         public async Task DeleteById(int id)

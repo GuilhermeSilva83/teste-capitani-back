@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -8,7 +9,9 @@ namespace Teste.Capitani.Domain.Seedwork
     public class Int32Entity : Entity<int>
     {
         private int _id;
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public override int Id
         {
             get { return _id; }

@@ -12,6 +12,7 @@ namespace Teste.Capitani.Domain.MainContext.Aggs.CidadeAgg
     {
         public string Nome { get; set; }
 
+        [ForeignKey("EstadoId")]
         public int EstadoId { get; set; }
     }
 }

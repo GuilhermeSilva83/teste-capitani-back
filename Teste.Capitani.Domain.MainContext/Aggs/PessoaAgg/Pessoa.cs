@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
+using Teste.Capitani.Domain.MainContext.Aggs.CidadeAgg;
 using Teste.Capitani.Domain.Seedwork;
 
 namespace Teste.Capitani.Domain.MainContext.Aggs.PessoaAgg
@@ -16,10 +18,11 @@ namespace Teste.Capitani.Domain.MainContext.Aggs.PessoaAgg
 
         public DateTime DataNascimento { get; set; }
 
+
         public int CidadeId { get; set; }
 
-        public string EstadoId { get; set; }
-
+        [ForeignKey(nameof(CidadeId))]
+        public Cidade Cidade { get; set; }
 
 
     }

@@ -6,7 +6,7 @@ using Teste.Capitani.Domain.Seedwork;
 
 namespace Teste.Capitani.Domain.MainContext.Aggs.EstadoAgg
 {
-    public interface EstadoRepository : IRepository<Estado, int>
+    public interface IEstadoRepository : IRepository<Estado, int>
     {
 
     }
