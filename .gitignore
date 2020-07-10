@@ -2,4 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/teste-capitani-api/DesignTimeBuild
+/.vs
+/.vs/teste-capitani-api/DesignTimeBuild/
+bin/
+obj/
