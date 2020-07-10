@@ -18,7 +18,7 @@ namespace Teste.Capitani.Infra.Repositories.MainContext
             this.ct = ct as MainUnitOfWork;
         }
 
-        public void DeleteById(int id)
+        public virtual void DeleteById(int id)
         {
             var set = GetSet();
             //  var e = await set.AsNoTracking().FirstOrDefaultAsync(w => w.Id == id); // await this.GetById(id);
@@ -27,7 +27,7 @@ namespace Teste.Capitani.Infra.Repositories.MainContext
             set.Remove(e);
         }
 
-        public void Save(TEntity entity)
+        public virtual void Save(TEntity entity)
         {
             if (entity.IsTransient())
             {
@@ -41,17 +41,17 @@ namespace Teste.Capitani.Infra.Repositories.MainContext
             }
         }
 
-        public async Task<TEntity> GetById(int id)
+        public virtual async Task<TEntity> GetById(int id)
         {
             return await GetSet().FirstOrDefaultAsync(f => f.Id == id);
         }
 
-        public async Task<List<TEntity>> List()
+        public virtual async Task<List<TEntity>> List()
         {
             return await GetSet().ToListAsync();
         }
 
-        protected DbSet<TEntity> GetSet()
+        protected virtual DbSet<TEntity> GetSet()
         {
             return ct.Set<TEntity>();
         }
