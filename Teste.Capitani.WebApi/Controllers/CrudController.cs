@@ -38,24 +38,29 @@ namespace Teste.Capitani.WebApi.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] TEntity value)
+        public OperationResult Post([FromBody] TEntity value)
         {
             rep.Save(value);
             uow.Commit();
+            return OperationResult.Ok(value);
+
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] TEntity value)
+        public OperationResult Put(int id, [FromBody] TEntity value)
         {
             rep.Save(value);
             uow.Commit();
+
+            return OperationResult.Ok(value);
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public OperationResult Delete(int id)
         {
             rep.DeleteById(id);
             uow.Commit();
+            return OperationResult.Ok();
         }
     }
 }

@@ -31,6 +31,11 @@ namespace Teste.Capitani.WebApi
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+
+            });
+
 
             services.AddControllers();
 
@@ -79,6 +84,14 @@ namespace Teste.Capitani.WebApi
             });
 
             app.UseRouting();
+
+            app.UseCors(builder => builder
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .SetIsOriginAllowed((host) => true)
+                .AllowCredentials()
+        );
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
