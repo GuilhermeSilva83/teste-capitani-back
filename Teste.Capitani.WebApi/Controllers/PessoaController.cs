@@ -16,9 +16,6 @@ namespace Teste.Capitani.WebApi.Controllers
     [ApiController]
     public class PessoaController : Int32CrudController<IPessoaRepository, Pessoa>
     {
-        IUnitOfWork uow = null;
-        IPessoaRepository rep = null;
-
         public PessoaController(IUnitOfWork uow, IPessoaRepository rep) : base(uow, rep)
         {
             this.uow = uow;

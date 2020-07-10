@@ -15,8 +15,8 @@ namespace Teste.Capitani.WebApi.Controllers
         where TEntity : class
 
     {
-        IUnitOfWork uow = null;
-        IRepository<TEntity, int> rep = null;
+        protected IUnitOfWork uow = null;
+        protected TRepository rep = null;
 
         public Int32CrudController(IUnitOfWork uow, TRepository rep)
         {
@@ -47,7 +47,7 @@ namespace Teste.Capitani.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public OperationResult Put(int id, [FromBody] TEntity value)
+        public OperationResult Put([FromBody] TEntity value)
         {
             rep.Save(value);
             uow.Commit();
