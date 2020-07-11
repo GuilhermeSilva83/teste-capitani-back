@@ -46,9 +46,10 @@ namespace Teste.Capitani.Infra.Repositories.MainContext.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Cpf = table.Column<string>(nullable: true),
+                    Nome = table.Column<string>(maxLength: 100, nullable: true),
+                    Email = table.Column<string>(maxLength: 100, nullable: true),
+                    Cpf = table.Column<string>(maxLength: 11, nullable: true),
+                    Cep = table.Column<string>(maxLength: 8, nullable: true),
                     DataNascimento = table.Column<DateTime>(nullable: false),
                     CidadeId = table.Column<int>(nullable: false)
                 },
@@ -61,6 +62,37 @@ namespace Teste.Capitani.Infra.Repositories.MainContext.Migrations
                         principalTable: "Cidades",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Estados",
+                columns: new[] { "Id", "Nome" },
+                values: new object[] { 1, "Sao Paulo" });
+
+            migrationBuilder.InsertData(
+                table: "Estados",
+                columns: new[] { "Id", "Nome" },
+                values: new object[] { 2, "Rio de Janeiro" });
+
+            migrationBuilder.InsertData(
+                table: "Estados",
+                columns: new[] { "Id", "Nome" },
+                values: new object[] { 3, "Mato Grosso" });
+
+            migrationBuilder.InsertData(
+                table: "Cidades",
+                columns: new[] { "Id", "EstadoId", "Nome" },
+                values: new object[,]
+                {
+                    { 1, 1, "São Paulo" },
+                    { 2, 1, "Barueri" },
+                    { 3, 1, "Osasco" },
+                    { 4, 2, "Rio de Janeiro" },
+                    { 5, 2, "Cabo Frio" },
+                    { 6, 2, "Arraial do Cabo" },
+                    { 7, 3, "Cuiaba" },
+                    { 8, 3, "Chamada dos Guimaraes" },
+                    { 9, 3, "Santo Antonio" }
                 });
 
             migrationBuilder.CreateIndex(

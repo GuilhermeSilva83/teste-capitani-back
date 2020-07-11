@@ -6,3 +6,4 @@
 /.vs/teste-capitani-api/DesignTimeBuild/
 bin/
 obj/
+*.user

@@ -10,8 +10,8 @@ using Teste.Capitani.Infra.Repositories.MainContext;
 namespace Teste.Capitani.Infra.Repositories.MainContext.Migrations
 {
     [DbContext(typeof(MainUnitOfWork))]
-    [Migration("20200711005146_pessoa_cep")]
-    partial class pessoa_cep
+    [Migration("20200711041801_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,6 +39,62 @@ namespace Teste.Capitani.Infra.Repositories.MainContext.Migrations
                     b.HasIndex("EstadoId");
 
                     b.ToTable("Cidades");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EstadoId = 1,
+                            Nome = "São Paulo"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            EstadoId = 1,
+                            Nome = "Barueri"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            EstadoId = 1,
+                            Nome = "Osasco"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            EstadoId = 2,
+                            Nome = "Rio de Janeiro"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            EstadoId = 2,
+                            Nome = "Cabo Frio"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            EstadoId = 2,
+                            Nome = "Arraial do Cabo"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            EstadoId = 3,
+                            Nome = "Cuiaba"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            EstadoId = 3,
+                            Nome = "Chamada dos Guimaraes"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            EstadoId = 3,
+                            Nome = "Santo Antonio"
+                        });
                 });
 
             modelBuilder.Entity("Teste.Capitani.Domain.MainContext.Aggs.EstadoAgg.Estado", b =>
@@ -54,6 +110,23 @@ namespace Teste.Capitani.Infra.Repositories.MainContext.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Estados");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nome = "Sao Paulo"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nome = "Rio de Janeiro"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nome = "Mato Grosso"
+                        });
                 });
 
             modelBuilder.Entity("Teste.Capitani.Domain.MainContext.Aggs.PessoaAgg.Pessoa", b =>
@@ -94,7 +167,7 @@ namespace Teste.Capitani.Infra.Repositories.MainContext.Migrations
 
             modelBuilder.Entity("Teste.Capitani.Domain.MainContext.Aggs.CidadeAgg.Cidade", b =>
                 {
-                    b.HasOne("Teste.Capitani.Domain.MainContext.Aggs.EstadoAgg.Estado", null)
+                    b.HasOne("Teste.Capitani.Domain.MainContext.Aggs.EstadoAgg.Estado", "Estado")
                         .WithMany("Cidades")
                         .HasForeignKey("EstadoId")
                         .OnDelete(DeleteBehavior.Cascade)
