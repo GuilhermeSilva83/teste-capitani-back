@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Teste.Capitani.Infra.Repositories.MainContext;
 
 namespace Teste.Capitani.Infra.Repositories.MainContext.Migrations
 {
     [DbContext(typeof(MainUnitOfWork))]
-    partial class MainUnitOfWorkModelSnapshot : ModelSnapshot
+    [Migration("20200711005146_pessoa_cep")]
+    partial class pessoa_cep
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

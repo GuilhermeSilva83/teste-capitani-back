@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using AutoMapper;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +17,7 @@ namespace Teste.Capitani.WebApi.Controllers
         where TEntity : class
 
     {
+        protected IMapper mapper;
         protected IUnitOfWork unitOfWork = null;
         protected TRepository repository = null;
 
@@ -24,39 +27,38 @@ namespace Teste.Capitani.WebApi.Controllers
             this.repository = rep;
         }
 
+        public Int32CrudController(IUnitOfWork uow, TRepository rep, IMapper mapper)
+        {
+            this.mapper = mapper;
+            this.unitOfWork = uow;
+            this.repository = rep;
+        }
+
 
         [HttpGet]
-        public async Task<IEnumerable<TEntity>> Get()
+        public virtual async Task<IEnumerable<TEntity>> List()
         {
             return await repository.List();
         }
 
+
         [HttpGet("{id}")]
-        public async Task<TEntity> Get(int id)
+        public virtual async Task<TEntity> Get(int id)
         {
             return await this.repository.GetById(id);
         }
 
         [HttpPost]
-        public OperationResult Post([FromBody] TEntity value)
-        {
-            repository.Save(value);
-            unitOfWork.Commit();
-            return OperationResult.Ok(value);
-
-        }
-
         [HttpPut("{id}")]
-        public OperationResult Put([FromBody] TEntity value)
+        public virtual OperationResult Save([FromBody] TEntity value, int id)
         {
             repository.Save(value);
             unitOfWork.Commit();
-
             return OperationResult.Ok(value);
         }
 
         [HttpDelete("{id}")]
-        public OperationResult Delete(int id)
+        public virtual OperationResult Delete(int id)
         {
             repository.DeleteById(id);
             unitOfWork.Commit();

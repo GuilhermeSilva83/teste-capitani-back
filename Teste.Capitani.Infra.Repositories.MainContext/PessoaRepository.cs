@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +16,15 @@ namespace Teste.Capitani.Infra.Repositories.MainContext
         public PessoaRepository(IUnitOfWork u) : base(u)
         {
 
+        }
+
+        public override async Task<List<Pessoa>> List()
+        {
+            return await GetSet()
+                    .Include(w => w.Cidade)
+                    .ThenInclude(c => c.Estado)
+                    .ToListAsync()
+                    ;
         }
 
         public override async Task<Pessoa> GetById(int id)

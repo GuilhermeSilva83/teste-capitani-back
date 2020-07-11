@@ -35,7 +35,7 @@ namespace Teste.Capitani.Infra.Repositories.MainContext
             }
             else
             {
-                GetSet().Attach(entity);
+                //GetSet().Attach(entity);
                 GetSet().Update(entity);
 
             }

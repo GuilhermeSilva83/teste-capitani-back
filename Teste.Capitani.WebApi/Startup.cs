@@ -23,6 +23,9 @@ using System.IO;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.OpenApi.Models;
 
+using AutoMapper;
+using Teste.Capitani.WebApi.Infra;
+
 namespace Teste.Capitani.WebApi
 {
     public class Startup
@@ -31,6 +34,17 @@ namespace Teste.Capitani.WebApi
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
+
+            var mapperConfig = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new EntityToDtoProfile());
+                cfg.AddProfile(new DtoToEntityProfile());
+            });
+
+            services.AddSingleton(mapperConfig.CreateMapper());
+
+
             services.AddCors(options =>
             {
 
